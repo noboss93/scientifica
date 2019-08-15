@@ -6,7 +6,7 @@ library(ggplot2)
 library(shinythemes)
 library(xtable)
 
-ui <- navbarPage(title = "Scientifica", theme = shinytheme("spacelab"),
+ui <- navbarPage(title = "Scientifica", theme = shinytheme("spacelab"), footer = "Erstellt von Noah Bosshart",
                 
 
 # Studie UI ------------------------------------------------------------------
