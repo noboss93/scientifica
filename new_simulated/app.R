@@ -6,7 +6,7 @@ library(ggplot2)
 library(shinythemes)
 library(xtable)
 
-ui <- navbarPage(title = "Scientifica", theme = shinytheme("flatly"),
+ui <- navbarPage(title = "Scientifica", theme = shinytheme("spacelab"),
                 
 
 # Studie UI ------------------------------------------------------------------
@@ -18,17 +18,20 @@ ui <- navbarPage(title = "Scientifica", theme = shinytheme("flatly"),
                                 tags$head( # Spezifische CSS befehle welche für das gesammte Dokument verwendet wird
                                   tags$style(HTML("
                                                    hr{border-top: 1px solid #95a5a6;}
-                                                   #healthy{background-color:#3353B7; 
+                                                   #healthy{background-image: radial-gradient(#753f3f00 20%, transparent 20%),                                                                       
+                                                                              radial-gradient(#ff000000 20%, transparent 20%);
+                                                   background-color:#3353B7;
                                                             border-color:#3353B7;
                                                             margin:auto;
                                                             display:block}
                                                    #healthy:hover{background-color:#0028A5}
                                                    #ill{background-image: radial-gradient(#FF0000 20%, transparent 20%),
-                                                                      radial-gradient(#FF0000 20%, transparent 20%);
-                                                                  background-position:0 0, 20px 18px;
+                                                                          radial-gradient(#FF0000 20%, transparent 20%);
+                                                                  background-position:0 0, 14px 13px;
                                                                   background-size: 30px 30px;
-                                                                  background-color:#3353B7; 
+                                                                  background-color:#3353B7;
                                                                   border-color:#3353B7;
+                                                                  background-repeat: repeat;
                                                                   margin:auto;
                                                                   display:block}
                                                    #ill:hover{background-color:#0028A5}
@@ -36,12 +39,13 @@ ui <- navbarPage(title = "Scientifica", theme = shinytheme("flatly"),
                                                             display:block}
                                                    #clear{margin:auto;
                                                           display:block;
-                                                          background-color:#FF0000;
-                                                          border-color:#D10000}
+                                                          }
                                                    #clear2{margin:auto;
                                                           display:block;
-                                                          background-color:#FF0000;
-                                                          border-color:#D10000}
+                                                          }
+                                                   #clear3{margin:auto;
+                                                          display:block;
+                                                         }
                                                    #clear:hover{background-color:#D10000}
                                                    .swal-button--cancel{background-color:#95a5a6;
                                                                         border-color:#95a5a6;
@@ -50,18 +54,6 @@ ui <- navbarPage(title = "Scientifica", theme = shinytheme("flatly"),
                                                                         border-color:D10000}
                                                    .swal-footer{text-align:center}
                                                    table.table.shiny-table.table-.spacing-s{margin:auto} 
-                                                   .navbar-default{
-                                                   background-color:#A3ADB7
-                                                   }
-                                                   .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
-                                                   background-color:#B5BDC5
-                                                   }
-                                                   .navbar-default .navbar-brand:hover,.navbar-default .navbar-brand:focus {
-                                                   color:#0028A5;
-                                                   background-color: transparent}
-                                                   .navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus {
-                                                   color:#0028A5;
-                                                   background-color: transparent}
                                                    .shiny-table.spacing-s > tbody > tr > td{padding-bottom:20px}
                                                    .shiny-notification {
                                                                   width: 300px;
@@ -109,7 +101,7 @@ ui <- navbarPage(title = "Scientifica", theme = shinytheme("flatly"),
                                   hr(),
                                   fluidRow(
                                     actionButton(inputId = "clear",
-                                                 label = "Werte löschen",
+                                                 label = "Löschen",
                                                  width = "40%")
                                       )#, 
                                 # nicht Anzuzeigen, kann genutzt werden um einen Seed zu finden der "interessant" ist.
@@ -148,7 +140,7 @@ ui <- navbarPage(title = "Scientifica", theme = shinytheme("flatly"),
                                   
                                   fluidRow(
                                     actionButton(inputId = "clear2",
-                                                 label = "Werte löschen",
+                                                 label = "Löschen",
                                                  width = "40%")
                                   ), # Tabelle mit Infos bzgl. Anzahl P-Werte > 0.05
                                   width = 3),
