@@ -10,101 +10,86 @@ ui <- navbarPage(title = "Scientifica", theme = shinytheme("spacelab"), footer =
                 
 
 # Studie UI ------------------------------------------------------------------
-
-                 tabPanel(title = "Enten Studie",
-                          useShinyjs(),
-                          sidebarLayout(
-                              sidebarPanel(
-                                tags$head( # Spezifische CSS befehle welche für das gesammte Dokument verwendet wird
-                                  tags$style(HTML("
-                                                   hr{border-top: 1px solid #95a5a6;}
-                                                   #healthy{background-image: radial-gradient(#753f3f00 20%, transparent 20%),                                                                       
-                                                                              radial-gradient(#ff000000 20%, transparent 20%);
-                                                   background-color:#3353B7;
-                                                            border-color:#3353B7;
-                                                            margin:auto;
-                                                            display:block}
-                                                   #healthy:hover{background-color:#0028A5}
-                                                   #ill{background-image: radial-gradient(#FF0000 20%, transparent 20%),
-                                                                          radial-gradient(#FF0000 20%, transparent 20%);
-                                                                  background-position:0 0, 14px 13px;
-                                                                  background-size: 30px 30px;
-                                                                  background-color:#3353B7;
-                                                                  border-color:#3353B7;
-                                                                  background-repeat: repeat;
-                                                                  margin:auto;
-                                                                  display:block}
-                                                   #ill:hover{background-color:#0028A5}
-                                                   #addfive{margin:auto; 
-                                                            display:block}
-                                                   #clear{margin:auto;
-                                                          display:block;
-                                                          }
-                                                   #clear2{margin:auto;
-                                                          display:block;
-                                                          }
-                                                   #clear3{margin:auto;
-                                                          display:block;
-                                                         }
-                                                   #clear:hover{background-color:#D10000}
-                                                   .swal-button--cancel{background-color:#95a5a6;
-                                                                        border-color:#95a5a6;
-                                                                        color:#FFFFFF}
-                                                   .swal-button--confirm{background-color:#D10000;
-                                                                        border-color:D10000}
-                                                   .swal-footer{text-align:center}
-                                                   table.table.shiny-table.table-.spacing-s{margin:auto} 
-                                                   .shiny-table.spacing-s > tbody > tr > td{padding-bottom:20px}
-                                                   .shiny-notification {
-                                                                  width: 300px;
-                                                                  position: fixed;
-                                                                  top:32% ;
-                                                                  left:48%;
-                                                  opacity: 1}
-                                                  .shiny-notification-close{
-                                                  display:none
-                                                  }"))
-                                ), 
-                                  fluidRow( # Zählknöpfe in zwei Reihen und pro Reihe zwei Spalten
-                                          column(width = 6,
-                                               
-                                                 actionButton(inputId = "healthy",
-                                                              label = "Blaue gesunde Ente",
-                                                              width = "100%",
-                                                              style = "color: #FFFFFF; height:75px"),
-                                                 br(),
-                                                 actionButton(inputId = "ill",
-                                                              label = "Blaue kranke Ente",
-                                                              width = "100%",
-                                                              style = "color: #FFFFFF; height:75px")),
-                                          
-                                          column(width = 6, 
-                                                 tableOutput(outputId = "percent"))
-                                      ),
-                                  hr(), # Clear-Button
-                                  fluidRow(
-                                      actionButton(inputId = "addfive",
-                                                   label = "Um 5 ergänzen",
-                                                   width = "93%",
-                                                  ),
-                                      br(),
-                                      column(width = 6,
-                                             actionButton(inputId = "random", 
-                                                             label = "Zufälliger Pfad",
-                                                             width = "100%")),
-                                      
-                                      column(width = 6,
-                                             actionButton(inputId = "critical",
-                                                          label = "Kritischer Fall",
-                                                          width = "100%"))
-                                      ),
-                                  hr(),
-                                  fluidRow(
-                                    actionButton(inputId = "clear",
-                                                 label = "Löschen",
-                                                 width = "40%")
-                                      )#, 
-                                # nicht Anzuzeigen, kann genutzt werden um einen Seed zu finden der "interessant" ist.
+tabPanel(title = "Enten Studie", useShinyjs(),
+         sidebarLayout(
+           sidebarPanel(
+             tags$head( # Spezifische CSS befehle welche für das gesammte Dokument verwendet wird
+               tags$style(HTML("hr{border-top: 1px solid #95a5a6}
+                               #healthy{background-image: radial-gradient(#753f3f00 20%, transparent 20%),                                                                       
+                                                          radial-gradient(#ff000000 20%, transparent 20%);
+                                                          background-color:#3353B7;
+                                                          border-color:#3353B7;
+                                                          margin:auto;
+                                                          display:block}
+                               #healthy:hover{background-color:#0028A5}
+                               #ill{background-image: radial-gradient(#FF0000 20%, transparent 20%),
+                                                      radial-gradient(#FF0000 20%, transparent 20%);
+                                                      background-position:0 0, 14px 13px;
+                                                      background-size: 30px 30px;
+                                                      background-color:#3353B7;
+                                                      border-color:#3353B7;
+                                                      background-repeat: repeat;
+                                                      margin:auto;
+                                                      display:block
+                                                      }
+                               #ill:hover{background-color:#0028A5}
+                               #addfive{margin:auto; 
+                                        display:block}
+                               #clear{margin:auto;
+                                      display:block}
+                               #clear2{margin:auto;
+                                      display:block}
+                               #clear3{margin:auto;
+                                      display:block}
+                               #clear:hover{background-color:#D10000}
+                               .swal-button--cancel{background-color:#95a5a6;
+                                                    border-color:#95a5a6;
+                                                    color:#FFFFFF}
+                               .swal-button--confirm{background-color:#D10000;
+                                                    border-color:D10000}
+                               .swal-footer{text-align:center}
+                               table.table.shiny-table.table-.spacing-s{margin:auto} 
+                               .shiny-table.spacing-s > tbody > tr > td{padding-bottom:20px}
+                               .shiny-notification {
+                                              width: 300px;
+                                              position: fixed;
+                                              top: 32% ;
+                                              left: 48%;
+                                              opacity: 1}
+                               .shiny-notification-close{display:none}"))),
+             fluidRow(
+               column(width = 6,
+                      actionButton(inputId = "healthy", 
+                                   label = "Blaue gesunde Ente",
+                                   width = "100%", 
+                                   style = "color: #FFFFFF; height:75px"),
+                      br(),
+                      actionButton(inputId = "ill",
+                                   label = "Blaue kranke Ente",
+                                   width = "100%",
+                                   style = "color: #FFFFFF; height:75px")),
+               column(width = 6, tableOutput(outputId = "percent"))),
+             hr(),
+             fluidRow(
+               actionButton(inputId = "addfive",
+                            label = "Um 5 ergänzen",
+                            width = "93%"),
+               br(),
+               column(width = 6,
+                      actionButton(inputId = "random", 
+                                   label = "Zufälliger Pfad",
+                                   width = "100%")),
+               column(width = 6,
+                      actionButton(inputId = "critical",
+                                   label = "Kritischer Fall",
+                                   width = "100%"))),
+             hr(),
+             fluidRow(
+               actionButton(inputId = "clear",
+                            label = "Löschen",
+                            width = "40%"))#, 
+                                # nicht Anzuzeigen, kann genutzt werden um einen Seed zu 
+                                # finden der "interessant" ist.
                                 #fluidRow( 
                                 #  sliderInput(inputId = "seed",
                                 #              label = "choose seed",
@@ -112,71 +97,57 @@ ui <- navbarPage(title = "Scientifica", theme = shinytheme("spacelab"), footer =
                                 #              max = 2000,
                                 #              value = 106)
                                 #)
-                              
-                                  ),
-                              mainPanel(
-                                plotOutput(outputId = "graph")
-                                  )
-                              )
-                          ),
+             ),
+           mainPanel(plotOutput(outputId = "graph"))
+           )
+         ),
 
 # Simulation UI -----------------------------------------------------------
-                 navbarMenu(title = "Simulationen",
-                 tabPanel(title = "Daten neu simulieren",
-                          sidebarLayout(
-                              sidebarPanel( # Butten zur Datengenerierung
-                                  selectInput(inputId = "nobs",
-                                              label = "Wähle Stichprobengrösse",
-                                              choices = c(50, 100, 200, 500, 1000),
-                                              multiple = FALSE),
-                              
-                                  actionButton(inputId = "gen", 
-                                               label = "Daten simulieren",
-                                               width = "100%"),
-                                  br(),
-                                  hr(),
-                                  tableOutput(outputId = "counttable"),
-                                  hr(),
-                                  
-                                  fluidRow(
-                                    actionButton(inputId = "clear2",
-                                                 label = "Löschen",
-                                                 width = "40%")
-                                  ), # Tabelle mit Infos bzgl. Anzahl P-Werte > 0.05
-                                  width = 3),
-                              
-                              mainPanel(
-                                  plotOutput(outputId = "simgraph")
-                              )
-                          )),
-                          tabPanel(title = "Datensatz verwenden",
-                                   sidebarLayout(
-                                     sidebarPanel( # Butten zur Datengenerierung
-                                       selectInput(inputId = "nobs2",
-                                                   label = "Wähle Stichprobengrösse",
-                                                   choices = c(50, 100, 200, 500, 1000),
-                                                   multiple = FALSE),
-                                       
-                                       actionButton(inputId = "gen2", 
-                                                    label = "Daten simulieren",
-                                                    width = "100%"),
-                                       br(),
-                                       hr(),
-                                       tableOutput(outputId = "counttable2"),
-                                       hr(),
-                                       
-                                       fluidRow(
-                                         actionButton(inputId = "clear3",
-                                                      label = "Löschen",
-                                                      width = "40%")
-                                       ), # Tabelle mit Infos bzgl. Anzahl P-Werte > 0.05
-                                       width = 3),
-                                     
-                                     mainPanel(
-                                       plotOutput(outputId = "simgraph2")
-                                     )
-                                   ))
-)
+navbarMenu(title = "Simulationen",
+           tabPanel(title = "Daten neu simulieren",
+                    sidebarLayout(
+                      sidebarPanel( # Butten zur Datengenerierung
+                        selectInput(inputId = "nobs",
+                                    label = "Wähle Stichprobengrösse",
+                                    choices = c(50, 100, 200, 500, 1000),
+                                    multiple = FALSE),
+                        actionButton(inputId = "gen", 
+                                     label = "Daten simulieren",
+                                     width = "100%"),
+                        br(),
+                        hr(),
+                        tableOutput(outputId = "counttable"),
+                        hr(),
+                        fluidRow(
+                          actionButton(inputId = "clear2",
+                                       label = "Löschen",
+                                       width = "40%")),
+                        width = 3),
+                      mainPanel(plotOutput(outputId = "simgraph"))
+                      )),
+           tabPanel(title = "Datensatz verwenden",
+                    sidebarLayout(
+                      sidebarPanel( # Butten zur Datengenerierung
+                        selectInput(inputId = "nobs2",
+                                    label = "Wähle Stichprobengrösse",
+                                    choices = c(50, 100, 200, 500, 1000),
+                                    multiple = FALSE),
+                        actionButton(inputId = "gen2",
+                                     label = "Daten simulieren",
+                                     width = "100%"),
+                        br(),
+                        hr(),
+                        tableOutput(outputId = "counttable2"),
+                        hr(),
+                        fluidRow(
+                          actionButton(inputId = "clear3",
+                                       label = "Löschen",
+                                       width = "40%")),
+                        width = 3),
+                      mainPanel(plotOutput(outputId = "simgraph2"))
+                      )
+                    )
+           )
 )
 
 
@@ -185,68 +156,72 @@ server <- function(input, output, session) {
 
 # Studie Server -----------------------------------------------------------
   
-    # Erstellen eines reaktiven Werten
-    nobs = 60
-    prob <- 0.5
-    pvals <- reactiveValues(count = c(NA)) 
-    sample <- reactiveValues(healthy = rep(0, nobs/2), ill = rep(1, nobs/2))
-    click <- reactiveValues(count = 0, clear = 0, clear2 = 0)
-    blue <- reactiveValues(healthy = 0, ill = 0)
+  # Erstellen eines reaktiven Werten
+  nobs = 60
+  prob <- 0.5
+  pvals <- reactiveValues(count = c(NA)) 
+  sample <- reactiveValues(healthy = rep(0, nobs/2), ill = rep(1, nobs/2))
+  click <- reactiveValues(count = 0, clear = 0, clear2 = 0)
+  blue <- reactiveValues(healthy = 0, ill = 0)
     
-    # Plotten des Graphen
-    output$graph <- renderPlot({
-      plot(1:length(pvals$count), pvals$count, type = "b", ylim = c(0,1), xlim = c(1,60), ylab = "p-Werte", xlab = "Stichprobengrösse",
-           main = "Verlauf des p-Wertes")
-      abline(h = 0.05, col = "red")
+  # Plotten des Graphen
+  output$graph <- renderPlot({
+    plot(1:length(pvals$count), pvals$count, type = "b", ylim = c(0,1), 
+         xlim = c(1,60), ylab = "p-Werte", xlab = "Stichprobengrösse",
+         main = "Verlauf des p-Wertes")
+    abline(h = 0.05, col = "red")
     })
+   
+  # Plotten der Tabelle, welche die Prozentzahlen angibt
+  m <- reactive({
+    if(blue$healthy == 0 & blue$ill == 0){
+    temp <- matrix(c(paste(0,"%"),
+                     paste(0,"%")), nrow = 2) # if else ()
+    colnames(temp) <- c("Verhältnis der gezogenen Enten")
+    temp
+    } else {
+      temp <- matrix(c(paste(round(blue$healthy / (blue$healthy + blue$ill) * 100, digits = 0),"%"),
+                       paste(round(blue$ill / (blue$ill + blue$healthy) * 100, digits = 0),"%")), nrow = 2)
+      colnames(temp) <- c("Verhältnis der gezogenen Enten")
+      temp
+      }
+    })
+  output$percent <- renderTable(m(), digits = 0, align = "c")
     
-    # Plotten der Tabelle, welche die Prozentzahlen angibt
-    m <- reactive({if(blue$healthy == 0 & blue$ill == 0){ 
-                          temp <- matrix(c(paste(0,"%"),
-                                            paste(0,"%")), nrow = 2) # if else ()
-                          colnames(temp) <- c("Verhältnis der gezogenen Enten")
-                          temp
-                          } else {
-                          temp <- matrix(c(paste(round(blue$healthy / (blue$healthy + blue$ill) * 100, digits = 0),"%"),
-                                            paste(round(blue$ill / (blue$ill + blue$healthy) * 100, digits = 0),"%")), nrow = 2) # if else ()
-                          colnames(temp) <- c("Verhältnis der gezogenen Enten")
-                          temp
-                          } 
-      })
-
-    output$percent <- renderTable(m(), digits = 0, align = "c")
-    
-    # Bei jedem Klick auf einen "BlueButton" wird die dazugehörige Variable +1 gerechnet
-    observeEvent(input$healthy, {
-      if(click$count < 60){
+  # Bei jedem Klick auf einen "BlueButton" wird die dazugehörige Variable +1 gerechnet
+  observeEvent(input$healthy, {
+    if(click$count < 60){
       blue$healthy <- blue$healthy + 1
       sample$healthy <- sample$healthy[-1]
       }
     })
     
-    observeEvent(input$ill, {
-      if(click$count < 60){
-      blue$ill <- blue$ill + 1
-      sample$ill <- sample$ill[-1]
+  observeEvent(input$ill, {
+    if(click$count < 60){
+    blue$ill <- blue$ill + 1
+    sample$ill <- sample$ill[-1]
+    }
+  })
+    
+  # Funktion bei der für jede einzelne Ziehung den p-Wert berechent wird
+  observeEvent(input$ill,{
+    if(click$count < 60){
+       click$count <- click$count + 1
+       pvals$count[click$count] <- binom.test(blue$ill, blue$ill + blue$healthy,
+                                              p = prob, alternative = "less")$p.value
       }
     })
     
-    # Funktion bei der für jede einzelne Ziehung den p-Wert berechent wird
-    observeEvent(input$ill
-      ,{if(click$count < 60){
-        click$count <- click$count + 1
-        pvals$count[click$count] <- binom.test(blue$ill, blue$ill + blue$healthy, p = prob, alternative = "less")$p.value
-      }
+  observeEvent(input$healthy,{
+    if(click$count < 60){
+       click$count <- click$count + 1
+       pvals$count[click$count] <- binom.test(blue$ill, blue$ill + blue$healthy,
+                                              p = prob, alternative = "less")$p.value
+       }
     })
     
-    observeEvent(input$healthy 
-      ,{if(click$count < 60){
-        click$count <- click$count + 1
-        pvals$count[click$count] <- binom.test(blue$ill, blue$ill + blue$healthy, p = prob, alternative = "less")$p.value
-      }
-      })
-    
-    # Funktion bei der von den noch vorhandenen Enten 5 ausgewählt werden und jeweils jedesmal den p-Wert berechnet wird.
+    # Funktion bei der von den noch vorhandenen Enten 5 ausgewählt werden und 
+    # jeweils jedesmal den p-Wert berechnet wird.
     observeEvent(input$addfive, {
       fullsample <- c(sample$ill, sample$healthy)
       observation <- fullsample[sample(length(sample$ill) + length(sample$healthy))]
@@ -275,7 +250,8 @@ server <- function(input, output, session) {
         fullsample <- c(sample$ill, sample$healthy)
         observation <- fullsample[sample(length(sample$ill) + length(sample$healthy))]
         
-        pvals$count[click$count] <- binom.test(blue$ill, blue$ill + blue$healthy, p = prob, alternative = "less")$p.value
+        pvals$count[click$count] <- binom.test(blue$ill, blue$ill + blue$healthy,
+                                               p = prob, alternative = "less")$p.value
       }
       }
       }
@@ -300,7 +276,8 @@ server <- function(input, output, session) {
         } else {
           blue$ill <- blue$ill + 1
         }
-        pvals$count[click$count] <- binom.test(blue$ill, blue$ill + blue$healthy, p = prob, alternative = "less")$p.value
+        pvals$count[click$count] <- binom.test(blue$ill, blue$ill + blue$healthy,
+                                               p = prob, alternative = "less")$p.value
       }
     })
     
@@ -325,7 +302,8 @@ server <- function(input, output, session) {
         } else {
           blue$ill <- blue$ill + 1
         }
-        pvals$count[click$count] <- binom.test(blue$ill, blue$ill + blue$healthy, p = prob, alternative = "less")$p.value
+        pvals$count[click$count] <- binom.test(blue$ill, blue$ill + blue$healthy,
+                                               p = prob, alternative = "less")$p.value
       }
     })
     
@@ -401,7 +379,8 @@ server <- function(input, output, session) {
       return(pvals)
     }
     
-    # Erstellung eines Dataframes mit "niter" Zeilen und "n" Spalten, wobei jede Zeile den p-Werten einer Ziehung entspricht
+    # Erstellung eines Dataframes mit "niter" Zeilen und "n" Spalten, wobei jede Zeile 
+    # den p-Werten einer Ziehung entspricht
     compute_dataframe_random_enten <- function(niter, n, seed){
       
       counter_any <- counter_end <- 0
@@ -473,10 +452,12 @@ server <- function(input, output, session) {
         
       }))
       
-      # Jeder Stelle an der TRUE steht wird ihre Position in einen Vektor gespeichert (Position = Kritische Stichprobe in Dataframe)
+      # Jeder Stelle an der TRUE steht wird ihre Position in einen Vektor gespeichert 
+      # (Position = Kritische Stichprobe in Dataframe)
       critrows <- which(critical == TRUE)
       
-      # Zufälliges ziehen von 7 normalen Stichproben und 2 kritischen Stichproben und anschliessendes randomisieren der Reihenfolge
+      # Zufälliges ziehen von 7 normalen Stichproben und 2 kritischen Stichproben und 
+      # anschliessendes randomisieren der Reihenfolge
       rows_to_plot <- dataframe[sample(1:niter,7),]
       critrows <- dataframe[sample(critrows,2),]
       rows_to_plot <- rbind(rows_to_plot,critrows)
@@ -488,7 +469,8 @@ server <- function(input, output, session) {
       output$simgraph <- renderPlot({
         par(mfrow = c(3,3))
         for (i in 1:9){
-          plot(1:nobs, rows_to_plot[i,], type = "l", ylim = c(0,1), xlim = c(1,as.numeric(nobs)), ylab = "p-Werte", xlab = "Stichprobengrösse", 
+          plot(1:nobs, rows_to_plot[i,], type = "l", ylim = c(0,1), 
+               xlim = c(1,as.numeric(nobs)), ylab = "p-Werte", xlab = "Stichprobengrösse", 
                main = "Verlauf des p-Wertes")
           abline(h = 0.05, col = "red")
         }
@@ -635,7 +617,8 @@ observeEvent(input$gen2, {
   output$simgraph2 <- renderPlot({
     par(mfrow = c(3,3))
     for (i in 1:9){
-      plot(1:nobs, rows_to_plot[i,], type = "l", ylim = c(0,1), xlim = c(1,as.numeric(nobs)), ylab = "p-Werte", xlab = "Stichprobengrösse", 
+      plot(1:nobs, rows_to_plot[i,], type = "l", ylim = c(0,1), 
+           xlim = c(1,as.numeric(nobs)), ylab = "p-Werte", xlab = "Stichprobengrösse", 
            main = "Verlauf des p-Wertes")
       abline(h = 0.05, col = "red")
     }
