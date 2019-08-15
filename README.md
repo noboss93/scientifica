@@ -15,5 +15,12 @@ On the second tab you can choose between two options. One is simulating new data
 
 On the right side are nine graphes where two of them are specificly choosen to be a "critical" condition, with a p-value below 5%. 
 
+## Versions
+There are four versions of this app:
+* old_version: A first iteration of the app with a different approach to the task.
+* new_simulated: An app where the data on the second tab is newly generated each time.
+* pre_simulated: An app where the data on the second tab is taken from a pregenerated dataset.
+* combined (final): The final version of the app where the second tab is a combination from "new_simulated" and "pre_simulated".
+
 ## Link to Shiny App
-If you want to see the app in action you can follow this link:  https://noboss.shinyapps.io/combined/
+If you want to see the app in action you can follow this link to the combined version:  https://noboss.shinyapps.io/combined/
