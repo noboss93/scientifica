@@ -1,7 +1,7 @@
 # Scientifica Shiny App
 A Shiny app for the Scientifica fair at UZH / ETH
 
-The main goal of this application is to show visitors the importance of multiple testing with multiple samples. 
+The main goal of this application is to show visitors the impact of optional stopping in science. 
 
 ## Versions
 There are four versions of this app:
