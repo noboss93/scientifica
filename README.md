@@ -1,7 +1,7 @@
 # Scientifica Shiny App
 A Shiny app for the Scientifica fair at UZH / ETH
 
-The main goal of this application is to show visitors the impact of optional stopping in science. 
+The main goal of this application is to show visitors the impact of optional stopping in research. Optional stopping is a procedure where researchers stop their research, after analysing an incomplete sample and getting a significant result. This procedure often leads to higher type 1 errors and therefore wrong desicions.
 
 ## Versions
 There are four versions of this app:
