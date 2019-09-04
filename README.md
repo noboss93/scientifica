@@ -14,7 +14,7 @@ There are four versions of this app:
 If you want to see the app in action you can follow this link to the combined version:  https://noboss.shinyapps.io/combined/
 
 ## Procedure
-Visitors are asked test blue ducks, if the distribution of an illness is the same as in the one of yellow ducks. Therefore they take blue ducks out of a pool and check their buttom if they're ill or not. 
+Visitors are asked to test blue ducks, if the distribution of an illness is the same as in the one of yellow ducks (50/50). Therefore they take blue ducks out of a pool and check their buttom if they're ill or not (red dots / no red dots). 
 
 Every duck is recorded by pressing the corresponding button and a p-value is beeing calculated and shown on a graph. If people don't want to check every duck, they are given the possibility to add five random ducks from the remaining sample.
 
