@@ -398,13 +398,18 @@ server <- function(input, output, session) {
     
     # Defaultplot der Simulation
     output$simgraph <- renderPlot({
-      par(mfrow = c(3,3))
+      par(oma=c(4,4,3,.1))
+      par(mfrow = c(3,3), mai=c(0,0,0,0))
       for (i in 1:9){
-        plot(0, 0, type = "l", ylim = c(0,1), xlim = c(1,50), ylab = "p-Werte", xlab = "Stichprobengrösse", 
-             main = "Verlauf des p-Wertes")
+        plot(0, 0, type = "l", ylim = c(-.1,1.1), xlim = c(-1,55),
+             yaxt=ifelse(i%in%c(1,4,7),'s','n'),xaxt=ifelse(i>6,'s','n'), las = 1)
         abline(h = 0.05, col = "red")
       }
+      mtext(side=2,line=2.8, outer=T, "p-Wert")
+      mtext(side=1,line=2.8, outer=T, "Stichprobengrösse")
+      mtext(side=3,line=1.2, outer=T, cex=1.2, "Verlauf des p-Wertes")
     })
+    
     
     # Plotten von x Graphen unter berücksichtigung, dass genügend "interessante" darunter sind.
     # Angaben der Prozentzahlen wie häufig ein p-Wert < 5% vorkommt.
@@ -467,14 +472,18 @@ server <- function(input, output, session) {
       percent$sample <- c(counter_any/niter, counter_end/niter)
       
       output$simgraph <- renderPlot({
-        par(mfrow = c(3,3))
+        par(oma=c(4,4,3,.1))
+        par(mfrow = c(3,3), mai=c(0,0,0,0))
         for (i in 1:9){
-          plot(1:nobs, rows_to_plot[i,], type = "l", ylim = c(0,1), 
-               xlim = c(1,as.numeric(nobs)), ylab = "p-Werte", xlab = "Stichprobengrösse", 
-               main = "Verlauf des p-Wertes")
+          plot(1:nobs, rows_to_plot[i,], type = "l", ylim = c(-.1,1.1), xlim = c(-1,as.numeric(nobs)+5),
+               yaxt=ifelse(i%in%c(1,4,7),'s','n'),xaxt=ifelse(i>6,'s','n'), las = 1)
           abline(h = 0.05, col = "red")
         }
+        mtext(side=2,line=2.8, outer=T, "p-Wert")
+        mtext(side=1,line=2.8, outer=T, "Stichprobengrösse")
+        mtext(side=3,line=1.2, outer=T, cex=1.2, "Verlauf des p-Wertes")
       })
+      
       enable("gen")
     })
     
@@ -498,12 +507,16 @@ observeEvent(input$confirm2, {
     click$clear <- 0
     
     output$simgraph <- renderPlot({
-      par(mfrow = c(3,3))
+      par(oma=c(4,4,3,.1))
+      par(mfrow = c(3,3), mai=c(0,0,0,0))
       for (i in 1:9){
-        plot(0, 0, type = "l", ylim = c(0,1), xlim = c(1,50), ylab = "p-Werte", xlab = "Stichprobengrösse", 
-             main = "Verlauf des p-Wertes")
+        plot(0, 0, type = "l", ylim = c(-.1,1.1), xlim = c(-1,55),
+             yaxt=ifelse(i%in%c(1,4,7),'s','n'),xaxt=ifelse(i>6,'s','n'), las = 1)
         abline(h = 0.05, col = "red")
       }
+      mtext(side=2,line=2.8, outer=T, "p-Werte")
+      mtext(side=1,line=2.8, outer=T, "Stichprobengrösse")
+      mtext(side=3,line=1.2, outer=T, cex=1.2, "Verlauf des p-Wertes")
     })
   }
 })
@@ -564,12 +577,16 @@ compute_stats_random_enten <- function(niter, n, df){
 
 # Defaultplot der Simulation
 output$simgraph2 <- renderPlot({
-  par(mfrow = c(3,3))
+  par(oma=c(4,4,3,.1))
+  par(mfrow = c(3,3), mai=c(0,0,0,0))
   for (i in 1:9){
-    plot(0, 0, type = "l", ylim = c(0,1), xlim = c(1,50), ylab = "p-Werte", xlab = "Stichprobengrösse", 
-         main = "Verlauf des p-Wertes")
+    plot(0, 0, type = "l", ylim = c(-.1,1.1), xlim = c(-1,55),
+         yaxt=ifelse(i%in%c(1,4,7),'s','n'),xaxt=ifelse(i>6,'s','n'), las = 1)
     abline(h = 0.05, col = "red")
   }
+  mtext(side=2,line=2.8, outer=T, "p-Werte")
+  mtext(side=1,line=2.8, outer=T, "Stichprobengrösse")
+  mtext(side=3,line=1.2, outer=T, cex=1.2, "Verlauf des p-Wertes")
 })
 
 # Plotten von x Graphen unter berücksichtigung, dass genügend "interessante" darunter sind.
@@ -615,13 +632,16 @@ observeEvent(input$gen2, {
   rows_to_plot <- rows_to_plot[sample(1:9,9),]
   
   output$simgraph2 <- renderPlot({
-    par(mfrow = c(3,3))
+    par(oma=c(4,4,3,.1))
+    par(mfrow = c(3,3), mai=c(0,0,0,0))
     for (i in 1:9){
-      plot(1:nobs, rows_to_plot[i,], type = "l", ylim = c(0,1), 
-           xlim = c(1,as.numeric(nobs)), ylab = "p-Werte", xlab = "Stichprobengrösse", 
-           main = "Verlauf des p-Wertes")
+      plot(1:nobs, rows_to_plot[i,], type = "l", ylim = c(-.1,1.1), xlim = c(-1,as.numeric(nobs)+5),
+           yaxt=ifelse(i%in%c(1,4,7),'s','n'),xaxt=ifelse(i>6,'s','n'), las = 1)
       abline(h = 0.05, col = "red")
     }
+    mtext(side=2,line=2.8, outer=T, "p-Werte")
+    mtext(side=1,line=2.8, outer=T, "Stichprobengrösse")
+    mtext(side=3,line=1.2, outer=T, cex=1.2, "Verlauf des p-Wertes")
   })
 })
 
@@ -643,15 +663,20 @@ observeEvent(input$confirm3, {
     click$clear2 <- 0
     
     output$simgraph2 <- renderPlot({
-      par(mfrow = c(3,3))
+      par(oma=c(4,4,3,.1))
+      par(mfrow = c(3,3), mai=c(0,0,0,0))
       for (i in 1:9){
-        plot(0, 0, type = "l", ylim = c(0,1), xlim = c(1,50), ylab = "p-Werte", xlab = "Stichprobengrösse", 
-             main = "Verlauf des p-Wertes")
+        plot(0, 0, type = "l", ylim = c(-.1,1.1), xlim = c(-1,55),
+             yaxt=ifelse(i%in%c(1,4,7),'s','n'),xaxt=ifelse(i>6,'s','n'), las = 1)
         abline(h = 0.05, col = "red")
       }
+      mtext(side=2,line=2.8, outer=T, "p-Werte")
+      mtext(side=1,line=2.8, outer=T, "Stichprobengrösse")
+      mtext(side=3,line=1.2, outer=T, cex=1.2, "Verlauf des p-Wertes")
     })
   }
 })
+
 
 }
 
