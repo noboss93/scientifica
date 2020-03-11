@@ -106,7 +106,7 @@ tabPanel(title = "Enten Studie", useShinyjs(),
 navbarMenu(title = "Simulationen",
            tabPanel(title = "Daten neu simulieren",
                     sidebarLayout(
-                      sidebarPanel( # Butten zur Datengenerierung
+                      sidebarPanel( # Button zur Datengenerierung
                         selectInput(inputId = "nobs",
                                     label = "Wähle Stichprobengrösse",
                                     choices = c(50, 100, 200, 500, 1000),
@@ -127,7 +127,7 @@ navbarMenu(title = "Simulationen",
                       )),
            tabPanel(title = "Datensatz verwenden",
                     sidebarLayout(
-                      sidebarPanel( # Butten zur Datengenerierung
+                      sidebarPanel( # Button zur Datengenerierung
                         selectInput(inputId = "nobs2",
                                     label = "Wähle Stichprobengrösse",
                                     choices = c(50, 100, 200, 500, 1000),
